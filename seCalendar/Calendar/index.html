@@ -1,9 +1,16 @@
+<?php
+  require('databaseConnection.php');
+  session_start();
+
+  $myUsername = mysqli_real_escape_string($conn, $_GET['username']);
+  $myPassword = mysqli_real_escape_string($conn, $_GET['password']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
@@ -14,7 +21,7 @@
 </head>
 
 <body>
-  <nav class="navbar static-top  navbar-expand-sm nav-pills navbar-light bg-light mb-3">
+  <nav class="navbar static-top  navbar-expand-sm nav-pills navbar-light bg-light ">
 			<div class="container">
 				<a class="navbar-brand" href="#">Adelphi Academic Calendar</a>
 				<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -38,81 +45,87 @@
 				</div>
 				
 			</div>
-		</nav>
-
-<div id="calendar" class="calendar">
-    <div class="calendar-nav">
-        <button class="calendar-nav-left"><</button>
-        <p class="calendar-nav-date"></p>
-        <button class="calendar-nav-right">></button>
-    </div>
-    <div class="days-of-week ">
-        <div>Monday</div>
-        <div>Tuesday</div>
-        <div>Wednesday</div>
-        <div>Thursday</div>
-        <div>Friday</div>
-        <div>Saturday</div>
-        <div>Sunday</div>
-    </div>
-    <div class="month">
-        <div class="week">
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-        </div>
-        <div class="week">
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-        </div>
-        <div class="week">
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-        </div>
-        <div class="week">
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-        </div>
-        <div class="week">
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-        </div>
-        <div class="week">
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-        </div>
-    </div>
- 
+    </nav>
+<div class="calendar-container">
+  <div id="sidebar" class="sidebar">
+  
+  </div>
+  
+  <div id="calendar" class="calendar">
+      <div class="calendar-nav">
+          <button type="button" class="calendar-nav-left" data-toggle="tooltip" data-placement="bottom" title="Previous Month"><</button>
+          <p class="calendar-nav-date"></p>
+          <button class="calendar-nav-right" data-toggle="tooltip" data-placement="bottom" title="Next Month">></button>
+      </div>
+      <div class="days-of-week ">
+          <div>Monday</div>
+          <div>Tuesday</div>
+          <div>Wednesday</div>
+          <div>Thursday</div>
+          <div>Friday</div>
+          <div>Saturday</div>
+          <div>Sunday</div>
+      </div>
+      <div class="month">
+          <div class="week">
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+          </div>
+          <div class="week">
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+          </div>
+          <div class="week">
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+          </div>
+          <div class="week">
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+          </div>
+          <div class="week">
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+          </div>
+          <div class="week">
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+          </div>
+      </div>
+   
+  </div>
 </div>
+
 
 		
 		<!-- EQUAL WIDTH -->
