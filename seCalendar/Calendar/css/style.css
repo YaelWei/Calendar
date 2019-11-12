@@ -15,7 +15,7 @@ body {
     height: inherit;
     width: inherit;
 }
-.calendar-container {
+.main-view {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -26,6 +26,29 @@ body {
 .sidebar {
     width: 20%;
     background-color: blueviolet;
+}
+
+.create-event-button {
+    display: flex;
+    align-items: center;
+    font-size: small;
+    text-shadow: 1px 0px 5px rgb(88, 87, 87);
+    color: black;
+    cursor: pointer;
+    padding: 12px;
+    margin: auto;
+    margin-top: 6px;
+    transition-property: box-shadow;
+}
+
+.create-event-button:hover {
+    box-shadow: 0 0 8px;
+}
+
+i.fas {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,212,255,1)), to(#333));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .calendar {
@@ -49,6 +72,7 @@ body {
     background: none;
     border: none;
     font-size: 1.5em;
+    cursor: pointer;
     
 }
 
@@ -107,4 +131,12 @@ body {
 .day:hover {
     background-color: rgb(236, 235, 235);
    
+}
+
+.hide {
+    display: none !important;
+}
+
+.login-view {
+    
 }

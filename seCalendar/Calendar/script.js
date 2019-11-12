@@ -1,7 +1,7 @@
 var navLeftButton = document.querySelector('.calendar-nav-left');
 var navRightButton = document.querySelector('.calendar-nav-right');
 var navMonth = document.querySelector('.calendar-nav-date');
-const now =  moment();
+const now = moment();
 //sets up initial page
 navMonth.textContent = now.format('MMMM YYYY');
 populateCalendar(now);
@@ -11,30 +11,30 @@ function addMonth(e) {
   //itll reset new month, formatted
   navMonth.textContent = now.format('MMMM YYYY');
 
-  
+
 }
 function subtractMonth(e) {
   now.subtract(1, 'month');
   navMonth.textContent = now.format('MMMM YYYY');
 }
 //2 event listeners
-navLeftButton.addEventListener("click",(e) =>{
+navLeftButton.addEventListener("click", (e) => {
   //submit has a default action (refresh), preventDefault doesn't allow that behavior to occur
   e.preventDefault();
   subtractMonth(e);
   populateCalendar(now);
 
-  
+
 })
-navRightButton.addEventListener("click",(e) =>{
+navRightButton.addEventListener("click", (e) => {
   //submit has a default action (refresh), preventDefault doesn't allow that behavior to occur
   e.preventDefault();
   addMonth(e);
   populateCalendar(now);
-  
+
 })
 function populateCalendar(date) {
-  
+
   const days = Array.from(document.querySelectorAll('.day'));
   const dayIndices = new Map([
     ['Monday', 0],
@@ -63,4 +63,33 @@ function populateCalendar(date) {
   }
   console.log(dayOfFirstBox.format('dddd, MM-DD-YYYY'));
 }
+
+function hide(element) {
+  element.classList.add("hide");
+}
+
+function show(element) {
+  element.classList.remove("hide");
+}
+
+var nav = document.getElementById("nav-bar");
+var login = document.getElementById("login-view");
+var sidebar = document.getElementById("sidebar");
+var calendar = document.getElementById("calendar");
+
+nav.addEventListener("click", (e) => {
+  var element = e.target;
+  if (element.textContent === "Login") {
+    e.preventDefault();
+    show(login);
+    hide(sidebar);
+    hide(calendar);
+  }
+  else if (element.textContent === "Calendar") {
+    e.preventDefault();
+    hide(login);
+    show(sidebar);
+    show(calendar);
+  }
+})
 
