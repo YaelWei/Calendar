@@ -5,6 +5,10 @@
   $myUsername = mysqli_real_escape_string($conn, $_GET['username']);
   $myPassword = mysqli_real_escape_string($conn, $_GET['password']);
 ?>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 29df422e86e745307faf55ec5d9ef5b8e9a1b67a
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +25,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
   <nav id="nav-bar" class="navbar static-top  navbar-expand-sm nav-pills navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="#">Adelphi Academic Calendar</a>
@@ -46,6 +51,33 @@
 
     </div>
   </nav>
+=======
+  <nav class="navbar static-top  navbar-expand-sm nav-pills navbar-light bg-light mb-3">
+			<div class="container">
+				<a class="navbar-brand" href="#">Adelphi Academic Calendar</a>
+				<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="#"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Calendar</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Login</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</nav>
+>>>>>>> 29df422e86e745307faf55ec5d9ef5b8e9a1b67a
 
   <main id="main-section" class="main-view">
       <div id="login-view" class="login hide">
@@ -185,12 +217,21 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
   </main>
 
 
 
   <!-- EQUAL WIDTH -->
   <!-- <div class="container">
+=======
+
+</div>
+
+
+		<!-- EQUAL WIDTH -->
+		<!-- <div class="container">
+>>>>>>> 29df422e86e745307faf55ec5d9ef5b8e9a1b67a
 			<div class="row">
 				<div class="col" style="border:1px solid #333">Monday</div>
 				<div class="col" style="border:1px solid #333">Tuesday</div>
@@ -240,7 +281,7 @@
 
 function showText() {
 	var x  = document.getElementById("text");
-	
+
 	var displayText = text.style.display;
 	if (x.style.display === "none") {
     x.style.display = "block";
