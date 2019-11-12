@@ -90,6 +90,8 @@ i.fas {
     font-size: 1.5em;
     font-weight: bold;
     font-family: sans-serif;
+    width: 185px;
+    text-align: center;
 }
 
 .days-of-week {
