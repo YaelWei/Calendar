@@ -1,7 +1,12 @@
 <?php
   // Connect to database
-	$connection=mysqli_connect('localhost','cameronbosch','alliance','events');
+	$connection=mysqli_connect('localhost','cameronbosch','alliance','f19seaucalendar');
 
+	if ($db->connect_errno) {
+	echo "Connect failed: ". $mysqli->connect_error;
+	exit();
+}
+	
 	$request_method=$_SERVER["REQUEST_METHOD"];
 	switch($request_method)
 	{
@@ -95,13 +100,7 @@
 		echo json_encode($response);
 	}
 	
-	$url = 'http://compsci.adelphi.edu/~cameronbosch/';
-	$ch = curl_init($url);
-	curl_setopt($ch, CURLOPT_HTTPGET, true);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$response_json = curl_exec($ch);
-	curl_close($ch);
-	$response=json_decode($response_json, true);
+
 	// Close database connection
 	mysqli_close($connection);
 ?>
