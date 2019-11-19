@@ -6,14 +6,31 @@ class Event {
 	private $eventDescription;
 	private $eventDate;
 
+	// Constructor
+	function __construct($name, $description, $date) {
+    $this->eventName = $name;
+	$this->eventDescription = $description;
+	$this->eventDate = $date;
+  }
+
 	// Methods
 	function getEventName() {
 		return $this->eventName;
 	}
 	function getEventDescription() {
 		return $this->eventDescription;
-	}function getEventDate() {
+	}
+	function getEventDate() {
 		return $this->eventDate;
+	}
+	function setEventName(newEventName) {
+		$this->eventName = newEventName;
+	}
+	function setEventDescription(newEventDescription) {
+		$this->eventDescription = newEventDescription;
+	}
+	function setEventName(newEventDate) {
+		$this->eventDate = newEventDate;
 	}
 }
 
