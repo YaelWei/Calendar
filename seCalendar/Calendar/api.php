@@ -21,11 +21,6 @@
 			// Insert event
 			insert_event();
 			break;
-		case 'PUT':
-			// Update event
-			$eventID=intval($_GET["eventID"]);
-			update_event($eventID);
-			break;
 		case 'DELETE':
 			// Delete event
 			$eventID=intval($_GET["eventID"]);
