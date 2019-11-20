@@ -1,6 +1,6 @@
 <?php
 
-//test.php
+//getEvents.php
 
 $connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'frankcolasurdo', 'frcolsefp');
 
