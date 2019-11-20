@@ -1,6 +1,6 @@
 <?php
   // Connect to database
-	$connection=mysqli_connect('localhost','cameronbosch','alliance','f19seaucalendar');
+	$db=mysqli_connect('localhost','cameronbosch','alliance','f19seaucalendar');
 
 	if ($db->connect_errno) {
 	echo "Connect failed: ". $mysqli->connect_error;
@@ -39,12 +39,12 @@
 
 	function insert_event()
 	{
-		global $connection;
+		global $db;
 		$eventName=$_POST["eventName"];
 		$eventDescription=$_POST["eventDescription"];
 		$eventDate=$_POST["eventDate"];
 		$query="INSERT INTO events SET eventName={$eventName}, eventDescription={$eventDescription}, eventDate={$eventDate}";
-		if(mysqli_query($connection, $query))
+		if(mysqli_query($db, $query))
 		{
 			$response=array(
 				'status' => 1,
@@ -63,14 +63,14 @@
 	}
 	function get_events($eventID=0)
 	{
-		global $connection;
+		global $db;
 		$query="SELECT * FROM events";
 		if($eventID != 0)
 		{
 			$query.=" WHERE id=".$eventID." LIMIT 1";
 		}
 		$response=array();
-		$result=mysqli_query($connection, $query);
+		$result=mysqli_query($db, $query);
 		while($row=mysqli_fetch_array($result))
 		{
 			$response[]=$row;
@@ -80,9 +80,9 @@
 	}
 	function delete_event($eventID)
 	{
-		global $connection;
+		global $db;
 		$query="DELETE FROM events WHERE id=".$eventID;
-		if(mysqli_query($connection, $query))
+		if(mysqli_query($db, $query))
 		{
 			$response=array(
 				'status' => 1,
@@ -100,7 +100,8 @@
 		echo json_encode($response);
 	}
 	
-
 	// Close database connection
-	mysqli_close($connection);
+	mysqli_close($db);
+
+
 ?>
