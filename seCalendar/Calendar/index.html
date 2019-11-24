@@ -156,27 +156,29 @@
             </button>
           </div>
           <div class="modal-body">
-            <!-- // GOES HERE FORM STUFF -->
-            <div class="form-group">
-              <label for="event-title">Title:</label>
-              <input id="event-title" name="event-title" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="event-date">Date:</label>
-              <input type="date" id="event-date" name="event-date" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="event-time">Time:</label>
-              <input type="time" id="event-time" name="event-time" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="event-location">Location:</label>
-              <input id="event-location" name="event-location" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="event-description">Description:</label>
-              <input id="event-description" name="event-description" class="form-control">
-            </div>
+              <form action="add_api.php" method="post">
+                <!-- // GOES HERE FORM STUFF -->
+                <div class="form-group">
+                  <label for="event-title">Title:</label>
+                  <input id="eventName" name="event-title" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="event-date">Date:</label>
+                  <input type="date" id="eventDate" name="event-date" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="event-time">Time:</label>
+                  <input type="time" id="event-time" name="event-time" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="event-location">Location:</label>
+                  <input id="event-location" name="event-location" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="event-description">Description:</label>
+                  <input id="eventDescription name="event-description" class="form-control">
+                </div>
+              </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
