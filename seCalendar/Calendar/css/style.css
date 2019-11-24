@@ -127,7 +127,7 @@ i.fas {
     width: calc(100% / 7);
     height: 100%;
     border: 1px solid black;
-    
+    overflow: auto;
 }
 
 .day:hover {
@@ -181,5 +181,4 @@ i.fas {
     margin-bottom: 4px;
     font-size: .8em;
     font-weight: bold;
-    overflow: auto;
 }
