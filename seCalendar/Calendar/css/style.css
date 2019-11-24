@@ -145,3 +145,41 @@ i.fas {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.create-user-form {
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    /* align-self: center; */
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.create-user-title {
+    text-align: center;
+}
+
+.form-control {
+    
+    width: 300px;
+}
+
+.btn {
+    width: 300px;
+}
+
+.event {
+    width: 90%;
+    background-color: aquamarine;
+    margin: auto;
+    text-align: center;
+    border-radius: .5em;
+    margin-bottom: 4px;
+    font-size: .8em;
+    font-weight: bold;
+    overflow: auto;
+}
