@@ -2,12 +2,11 @@
 
 //addEvents.php
 
-$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'frankcolasurdo', 'frcolsefp');
+$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'cameronbosch', 'alliance');
 
 if(isset($_POST["title"]))
 {
- $query = "
- INSERT INTO events 
+ $query = " INSERT INTO events 
  (eventID, eventName, eventDate, eventDescription) 
  VALUES (:eventID, :eventName, :eventDate, eventDescription)
  ";
