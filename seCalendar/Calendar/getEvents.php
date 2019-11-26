@@ -2,7 +2,7 @@
 
 //getEvents.php
 
-$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'frankcolasurdo', 'frcolsefp');
+$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'cameronbosch', 'alliance');
 
 $data = array();
 
