@@ -1,34 +1,34 @@
 <?php
- header("Access-Control-Allow-Origin: *");
-//getEvents.php
+    header("Access-Control-Allow-Origin: *");
+    
+    $EVENT_ID = 'eventID';
+    $EVENT_NAME = 'eventName';
+    $EVENT_DATE = 'eventDate';
+    $EVENT_DESCRIPTION = 'eventDescription';
+    $EVENT_TERM_ID = 'eventTermID';
 
-$EVENT_ID = 'eventID';
-$EVENT_NAME = 'eventName';
-$EVENT_DATE = 'eventDate';
-$EVENT_DESCRIPTION = 'eventDescription';
-$EVENT_TERM_ID = 'eventTermID';
+    $connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'frankcolasurdo', 'frcolsefp');
 
-$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'frankcolasurdo', 'frcolsefp');
+    $data = array();
 
-$data = array();
+    $query = "SELECT * FROM events";
 
-$query = "SELECT * FROM events";
+    $statement = $connect->prepare($query);
 
-$statement = $connect->prepare($query);
+    $statement->execute();
 
-$statement->execute();
+    $result = $statement->fetchAll();
 
-$result = $statement->fetchAll();
+    foreach($result as $row)
+    {
+    $data[] = array(
+    "$EVENT_ID" => $row["$EVENT_ID"],
+    "$EVENT_NAME"   => $row["$EVENT_NAME"],
+    "$EVENT_DESCRIPTION" => $row["$EVENT_DESCRIPTION"],
+    "$EVENT_DATE" => $row["$EVENT_DATE"],
+    "$EVENT_TERM_ID" => $row["$EVENT_TERM_ID"]
+    );
+    }
 
-foreach($result as $row)
-{
- $data[] = array(
-  "$EVENT_ID" => $row["$EVENT_ID"],
-  "$EVENT_NAME"   => $row["$EVENT_NAME"],
-  "$EVENT_DESCRIPTION" => $row["$EVENT_DESCRIPTION"],
-  "$EVENT_DATE" => $row["$EVENT_DATE"],
- );
-}
-
-echo json_encode($data);
+    echo json_encode($data);
 ?>
