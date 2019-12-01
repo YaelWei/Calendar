@@ -7,12 +7,27 @@ navMonth.textContent = now.format('MMMM YYYY');
 populateCalendar(now);
 getEvents();
 
+// const data = postEvent({
+//   eventName: 'Doctor Appointment',
+//   eventDate: '2019-11-29',
+//   eventDescription: 'Kill 46 million turkeys on average.',
+//   eventTermID: 1
+// });
+
+// async function postEvent(event) {
+//   const response = await fetch('https://compsci.adelphi.edu:8842/~yaelweiss/seCalendar/Calendar/addEvents.php',{
+//     method: 'POST',
+//     mode: 'cors',
+//     body: JSON.stringify(event)
+//   });
+//   var blob = await response.blob();
+//   blob.text().then(text => console.log(text));
+// }
+
 function addMonth(e) {
   now.add(1, 'month');
   //itll reset new month, formatted
   navMonth.textContent = now.format('MMMM YYYY');
-
-
 }
 function subtractMonth(e) {
   now.subtract(1, 'month');
@@ -25,8 +40,6 @@ navLeftButton.addEventListener("click", (e) => {
   subtractMonth(e);
   populateCalendar(now);
   getEvents();
-
-
 })
 navRightButton.addEventListener("click", (e) => {
   //submit has a default action (refresh), preventDefault doesn't allow that behavior to occur
@@ -34,7 +47,6 @@ navRightButton.addEventListener("click", (e) => {
   addMonth(e);
   populateCalendar(now);
   getEvents();
-
 })
 function populateCalendar(date) {
 
@@ -51,20 +63,20 @@ function populateCalendar(date) {
   //can't mutate date, so clone it.
   const firstDayOfMonth = date.clone().date(1);
   //format is not a mutating method
-  console.log(firstDayOfMonth.format())
+  console.log(firstDayOfMonth.format());
   // Once you have the first day of the month, you need to know the index.
   // The dictionary keys are day names. I get the day of the first month like 'Friday' to match
   // an index of 4.
   const firstDayIndex = dayIndices.get(firstDayOfMonth.format('dddd'));
   const dayOfFirstBox = firstDayOfMonth.clone().subtract(firstDayIndex, 'days');
-  let iterator = dayOfFirstBox.clone()
+  let iterator = dayOfFirstBox.clone();
 
   for (let i = 0; i < days.length; i++) {
     const dayDiv = days[i];
     dayDiv.innerHTML = '';
     dayDiv.textContent = iterator.date();
-    dayDiv.dataset.day = iterator.date();
-    dayDiv.dataset.month = iterator.month();
+    dayDiv.dataset.day = iterator.format('DD');
+    dayDiv.dataset.month = iterator.format('MM');
     dayDiv.dataset.year = iterator.year();
     iterator = iterator.add(1, 'days');
   }
@@ -101,26 +113,11 @@ nav.addEventListener("click", (e) => {
 })
 
 async function getEvents() {
-  // const response = await fetch('url')
-  // let events = await response.json();
-  let events = `
-  [
-    { "title": "event1", "date": "2019-11-20"},
-    { "title": "event2", "date": "2019-12-08"},
-    { "title": "Yael's Birthday", "date": "2019-11-22"},
-    { "title": "Yael's Birthday", "date": "2019-11-22"},
-    { "title": "Yael's Birthday", "date": "2019-11-22"},
-    { "title": "Yael's Super Cool Birthday", "date": "2019-11-22"},
-    { "title": "event4", "date": "2019-11-23"},
-    { "title": "event5", "date": "2019-10-28"},
-    { "title": "event6", "date": "2019-09-21"},
-    { "title": "event7", "date": "2019-11-22"},
-    { "title": "event8", "date": "2019-10-23"}
+   const response = await fetch('https://compsci.adelphi.edu:8842/~yaelweiss/seCalendar/Calendar/getEvents.php');
+   let events = await response.json();
 
-  ]
-  `;
 
-  events = JSON.parse(events);
+  console.log('The events: ', events);
    // sort the events
    events.sort((eventA, eventB) => {
     var a = moment(eventA.date);
@@ -129,7 +126,41 @@ async function getEvents() {
    })
    console.log(events);
    var days = document.querySelectorAll(".day");
-  //  var firstDay, lastDay;
+  
+
+
+
+  for (let i = 0; i < days.length; i++) {
+    const dayDiv = days[i];
+    const dayDivDate = makeDateFromDayDiv(dayDiv);
+    for (let j = 0; j < events.length; j++) {
+      const event = events[j];
+      const eventMoment = moment(event.date);
+      if (dayDivDate === eventMoment.format('YYYY-MM-DD')) {
+        dayDiv.appendChild(createEventDiv(event));
+      }
+    }
+  }
+}
+
+function createEventDiv(event) {
+  const div = document.createElement('div');
+  div.classList.add('event');
+  div.textContent += event.title;
+  return div;
+}
+
+function makeDateFromDayDiv(dayDiv) {
+  var day = dayDiv.dataset.day;
+  var month = parseInt(dayDiv.dataset.month, 10);
+  if (month < 10) {
+    month = `0${month}`;
+  }
+  var year = dayDiv.dataset.year;
+  return `${year}-${month}-${day}`; // YYYY-M-D 2019-1-1 or 2019-11-25
+}
+
+//  var firstDay, lastDay;
   //  if (days) {
   //    firstDay = parseInt(days[0].textContent, 10);
   //    lastDay = parseInt(days[days.length - 1].textContent, 10);
@@ -183,30 +214,34 @@ async function getEvents() {
   // }
 
 
+  /*
+  // [
+  //   { "title": "event1", "date": "2019-11-20"},
+  //   { "title": "event2", "date": "2019-12-08"},
+  //   { "title": "Yael's Birthday", "date": "2019-11-22"},
+  //   { "title": "Yael's Birthday", "date": "2019-11-22"},
+  //   { "title": "Yael's Birthday", "date": "2019-11-22"},
+  //   { "title": "Yael's Super Cool Birthday", "date": "2019-11-22"},
+  //   { "title": "event4", "date": "2019-11-23"},
+  //   { "title": "event5", "date": "2019-10-28"},
+  //   { "title": "event6", "date": "2019-09-21"},
+  //   { "title": "event7", "date": "2019-11-22"},
+  //   { "title": "event8", "date": "2019-10-23"}
 
-  for (let i = 0; i < days.length; i++) {
-    const dayDiv = days[i];
-    const dayDivDate = makeDateFromDayDiv(dayDiv);
-    for (let j = 0; j < events.length; j++) {
-      const event = events[j];
-      const eventMoment = moment(event.date);
-      if (dayDivDate === eventMoment.format('YYYY-MM-DD')) {
-        dayDiv.appendChild(createEventDiv(event));
-      }
-    }
-  }
-}
+  // ]
+  let events = `
 
-function createEventDiv(event) {
-  const div = document.createElement('div');
-  div.classList.add('event');
-  div.textContent += event.title;
-  return div;
-}
-
-function makeDateFromDayDiv(dayDiv) {
-  var day = dayDiv.dataset.day;
-  var month = parseInt(dayDiv.dataset.month, 10) + 1;
-  var year = dayDiv.dataset.year;
-  return `${year}-${month}-${day}`; // YYYY-M-D 2019-1-1 or 2019-11-25
-}
+  [
+    {"title":"Matriculation Day", "date":"2019-08-25"},
+    {"title":"First Day of Classes","date":"2019-08-26"},
+    {"title":"Labor Day","date":"2019-09-02"},
+    {"title":"Last Day to Add a Course","date":"2019-09-09"},
+    {"title":"Last day to Drop a Course","date":"2019-09-23"}
+  ]
+  `;
+*/ 
+  
+  
+  // console.log("hello");
+  // console.log(events);
+  //events = JSON.parse(events);
