@@ -1,8 +1,14 @@
 <?php
-
+ header("Access-Control-Allow-Origin: *");
 //getEvents.php
 
-$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'cameronbosch', 'alliance');
+$EVENT_ID = 'eventID';
+$EVENT_NAME = 'eventName';
+$EVENT_DATE = 'eventDate';
+$EVENT_DESCRIPTION = 'eventDescription';
+$EVENT_TERM_ID = 'eventTermID';
+
+$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'frankcolasurdo', 'frcolsefp');
 
 $data = array();
 
@@ -17,13 +23,12 @@ $result = $statement->fetchAll();
 foreach($result as $row)
 {
  $data[] = array(
-  'id'   => $row["eventID"],
-  'title'   => $row["eventName"],
-  'description'   => $row["eventDescription"],
-  'date'   => $row["eventDate"],
+  "$EVENT_ID" => $row["$EVENT_ID"],
+  "$EVENT_NAME"   => $row["$EVENT_NAME"],
+  "$EVENT_DESCRIPTION" => $row["$EVENT_DESCRIPTION"],
+  "$EVENT_DATE" => $row["$EVENT_DATE"],
  );
 }
 
 echo json_encode($data);
-
 ?>

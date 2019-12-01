@@ -135,7 +135,7 @@ async function getEvents() {
     const dayDivDate = makeDateFromDayDiv(dayDiv);
     for (let j = 0; j < events.length; j++) {
       const event = events[j];
-      const eventMoment = moment(event.date);
+      const eventMoment = moment(event.eventDate);
       if (dayDivDate === eventMoment.format('YYYY-MM-DD')) {
         dayDiv.appendChild(createEventDiv(event));
       }
@@ -146,7 +146,7 @@ async function getEvents() {
 function createEventDiv(event) {
   const div = document.createElement('div');
   div.classList.add('event');
-  div.textContent += event.title;
+  div.textContent += event.eventName;
   return div;
 }
 
