@@ -1,25 +1,29 @@
 <?php
+    // Allow computers on other domains not from our adelphi server to make HTTP POST and GET requests.
+    header("Access-Control-Allow-Origin: *");
+	
+	$EVENT_NAME = 'eventName';
+	$EVENT_DATE = 'eventDate';
+	$EVENT_DESCRIPTION = 'eventDescription';
+	$EVENT_TERM_ID = 'eventTermID';
+    
+    // PHP doesn't understand JSON sent by JavaScript. Convert JSON for PHP to understand.
+	$_POST = json_decode(file_get_contents('php://input'), true);
 
-//addEvents.php
+	$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'frankcolasurdo', 'frcolsefp');
+	
+	$query = "
+		INSERT INTO events ($EVENT_NAME, $EVENT_DATE, $EVENT_DESCRIPTION, $EVENT_TERM_ID) 
+		VALUES 			   (:$EVENT_NAME, :$EVENT_DATE, :$EVENT_DESCRIPTION, :$EVENT_TERM_ID)
+	";
 
-$connect = new PDO('mysql:host=localhost;dbname=f19seaucalendar', 'cameronbosch', 'alliance');
+	$data = array(
+		'eventName' => $_POST["$EVENT_NAME"],
+		'eventDate' => $_POST["$EVENT_DATE"],
+		'eventDescription' => $_POST["$EVENT_DESCRIPTION"],
+		'eventTermID' => $_POST["$EVENT_TERM_ID"],
+	);
 
-if(isset($_POST["title"]))
-{
- $query = " INSERT INTO events 
- (eventID, eventName, eventDate, eventDescription) 
- VALUES (:eventID, :eventName, :eventDate, eventDescription)
- ";
- $statement = $connect->prepare($query);
- $statement->execute(
-  array(
-   ':eventID'  => $_POST['id'],
-   ':eventName' => $_POST['name'],
-   ':eventDate' => $_POST['date'],
-   ':eventDescription' => $_POST['description']
-  )
- );
-}
-
-
+	$statement = $connect->prepare($query);
+	$statement->execute($data);
 ?>
