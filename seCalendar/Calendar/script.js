@@ -7,6 +7,46 @@ navMonth.textContent = now.format('MMMM YYYY');
 populateCalendar(now);
 getEvents();
 
+
+// Get reference to the create button
+var createButton = document.getElementById("createButton");
+var form = document.getElementById("create-event-form");
+// Add a click handler on the button
+createButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  // createEventForm.submit();
+
+  
+  createEvent();
+})
+
+async function createEvent() {
+  const event = grabEventFromForm(form);
+  const response = await postEvent(event);
+  if (response.ok) {
+    addEventToCalendar(moment(event.eventDate), event);
+    $('#create-event-modal').modal('hide');
+  } else {
+    console.log('The response was not okay: ', response);
+  }
+  var blob = await response.blob();
+  blob.text().then(text => console.log(text));
+}
+
+function grabEventFromForm(form) {
+  const event = {};
+  const inputs = form.querySelectorAll("input");
+  for ( var i = 0; i <inputs.length; i++) {
+    const current = inputs[i];
+    event[current.name] = current.value;
+  }
+  console.log(event);
+  return event;
+}
+
+// Get reference to modal form
+// call form.submit()
+
 // const data = postEvent({
 //   eventName: 'Doctor Appointment',
 //   eventDate: '2019-11-29',
@@ -14,15 +54,14 @@ getEvents();
 //   eventTermID: 1
 // });
 
-// async function postEvent(event) {
-//   const response = await fetch('https://compsci.adelphi.edu:8842/~yaelweiss/seCalendar/Calendar/addEvents.php',{
-//     method: 'POST',
-//     mode: 'cors',
-//     body: JSON.stringify(event)
-//   });
-//   var blob = await response.blob();
-//   blob.text().then(text => console.log(text));
-// }
+async function postEvent(event) {
+  const response = fetch('https://compsci.adelphi.edu:8842/~yaelweiss/seCalendar/Calendar/addEvents.php',{
+    method: 'POST',
+    mode: 'cors',
+    body: JSON.stringify(event)
+  });
+  return response;
+}
 
 function addMonth(e) {
   now.add(1, 'month');
@@ -160,6 +199,23 @@ function makeDateFromDayDiv(dayDiv) {
   return `${year}-${month}-${day}`; // YYYY-M-D 2019-1-1 or 2019-11-25
 }
 
+function getDayDivByMoment(moment) {
+  const dayDivs = Array.from(document.querySelectorAll('.day'));
+  const div = dayDivs.find(div => {
+    const dateOfDiv = makeDateFromDayDiv(div);
+    return moment.format('YYYY-MM-DD') === dateOfDiv;
+  });
+  return div;
+}
+
+function addEventToCalendar(moment, event) {
+  const div = getDayDivByMoment(moment);
+  if (div) {
+    div.appendChild(createEventDiv(event));
+  } else {
+    throw new TypeError('No day div was provided');
+  }
+}
 //  var firstDay, lastDay;
   //  if (days) {
   //    firstDay = parseInt(days[0].textContent, 10);
