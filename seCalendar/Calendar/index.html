@@ -66,9 +66,20 @@
           </form>
         </div>
     <div id="sidebar" class="sidebar">
+      <div>
       <button type="button" class="create-event-button" data-toggle="modal" data-target="#create-event-modal"><i
           class="fas fa-plus"> </i>Create Event</button>
+      </div>
+      <div>
+      <button type="button" class="create-event-button" data-toggle="modal" data-target="#edit-event-modal"><i
+          class="fas fa-edit"> </i>Edit Event</button>
+      </div>
+      <div>
+      <button type="button" class="create-event-button" data-toggle="modal" data-target="#delete-event-modal"><i
+          class="fas fa-minus"> </i>Delete Event</button>
+      </div>
     </div>
+
     <div id="calendar" class="calendar">
       <div class="calendar-nav">
         <button type="button" class="calendar-nav-left" data-toggle="tooltip" data-placement="bottom"
@@ -144,6 +155,7 @@
         </div>
       </div>
 
+<!--create event form -->
     </div>
     <div class="modal fade" id="create-event-modal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -170,10 +182,7 @@
                   <label for="eventDescription">Description:</label>
                   <input id="eventDescription" name="eventDescription" class="form-control">
                 </div>
-                
-                  
                   <input id="eventTermID" name="eventTermID" class="form-control" hidden value="1">
-                
               </form>
           </div>
           <div class="modal-footer">
@@ -183,6 +192,81 @@
         </div>
       </div>
     </div>
+
+<!--edit event form -->
+    <div class="modal fade" id="edit-event-modal" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Event</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form id="edit-event-form"  method="post">
+                <!-- // GOES HERE FORM STUFF -->
+                <div class="form-group">
+                  <label for="eventName">Title to be Changed:</label>
+                  <input id="eventName" name="eventName" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="newEventName">New Title:</label>
+                  <input id="newEventName" name="newEventName" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="eventDate">Date to be Changed:</label>
+                  <input type="date" id="eventDate" name="eventDate" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="newEventDate">New Date:</label>
+                  <input type="date" id="newEventDate" name="newEventDate" class="form-control">
+                </div>
+
+                  <input id="eventTermID" name="eventTermID" class="form-control" hidden value="1">
+
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="editButton" class="btn btn-primary">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--delete event form -->
+<div class="modal fade" id="delete-event-modal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Delete Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form id="delete-event-form"  method="post">
+            <!-- // GOES HERE FORM STUFF -->
+            <div class="form-group">
+              <label for="eventName">Title to be Deleted:</label>
+              <input id="eventName" name="eventName" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="eventDate">Date to be Deleted:</label>
+              <input type="date" id="eventDate" name="eventDate" class="form-control">
+            </div>
+              <input id="eventTermID" name="eventTermID" class="form-control" hidden value="1">
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="deleteButton" class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
   </main>
 
 
@@ -197,8 +281,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="script.js"></script>
 
-  
+
 </body>
 
 </html>
-
