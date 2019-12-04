@@ -1,7 +1,13 @@
 var navLeftButton = document.querySelector('.calendar-nav-left');
 var navRightButton = document.querySelector('.calendar-nav-right');
+var fallSemesterButton = document.querySelector('.fallSemesterButton');
+var springSemesterButton = document.querySelector('.springSemesterButton');
+var currentButton =  document.querySelector('.currentButton');
 var navMonth = document.querySelector('.calendar-nav-date');
 const now = moment();
+const aug = moment('2019-08-01');
+const jan = moment('2019-01-05');
+
 //sets up initial page
 navMonth.textContent = now.format('MMMM YYYY');
 populateCalendar(now);
@@ -87,6 +93,51 @@ navRightButton.addEventListener("click", (e) => {
   populateCalendar(now);
   getEvents();
 })
+
+// when button is clicked, it adds one year to the month and makes month automatically August of upcoming year
+function fallSemester(e) {
+  aug.add(1, 'year');
+  navMonth.textContent = aug.format('MMMM YYYY');
+  now.add(1, 'year').month('August');
+}
+//add 1 event listener
+fallSemesterButton.addEventListener("click", (e) => {
+  //submit has a default action (refresh), preventDefault doesn't allow that behavior to occur
+  e.preventDefault();
+  fallSemester(e);
+  populateCalendar(aug);
+  getEvents();
+  
+  })
+// when button is clicked, it adds one year to the month and makes month automatically January of upcoming year  
+function springSemester(e) {
+  jan.add(1, 'year');
+  navMonth.textContent = jan.format('MMMM YYYY');
+  now.add(1, 'year').month('January');
+}
+//add 1 event listener
+springSemesterButton.addEventListener("click", (e) => {
+  //submit has a default action (refresh), preventDefault doesn't allow that behavior to occur
+  e.preventDefault();
+  springSemester(e);
+  populateCalendar(jan);
+  getEvents();
+  
+  })
+  
+ // goes back to the current year and current month.  
+function gotoCurrent(e) {
+  navMonth.textContent = now.format('MMMM YYYY');
+}
+//add 1 event listener
+currentButton.addEventListener("click", (e) => {
+  location.reload();
+  gotoCurrent(e);
+  populateCalendar(now);
+  getEvents();
+  
+  }) 
+  
 function populateCalendar(date) {
 
   const days = Array.from(document.querySelectorAll('.day'));

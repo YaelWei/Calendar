@@ -62,7 +62,7 @@
               </label>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
+            <p class="mt-5 mb-3 text-muted">Adelphi Academic Calendar © 2019-2099</p>
           </form>
         </div>
     <div id="sidebar" class="sidebar">
@@ -77,6 +77,15 @@
       <div>
       <button type="button" class="create-event-button" data-toggle="modal" data-target="#delete-event-modal"><i
           class="fas fa-minus"> </i>Delete Event</button>
+		  <br>
+	  <button type="button" class="currentButton" onclick="gotoCurrent(e)">
+		<i class="fas fa-arrow-left"> </i>Go to current</button>
+		<br>
+	  <button type="button" class="fallSemesterButton" onclick="fallSemester(e)">
+		<i class="fas fa-leaf"> </i>Go to Fall Semester</button>
+		<br>
+	  <button type="button" class="springSemesterButton" onclick="springSemester(e)">
+		<i class="fas fa-sun"> </i>Go to Spring Semester</button>
       </div>
     </div>
 
