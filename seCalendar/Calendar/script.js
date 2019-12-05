@@ -22,7 +22,7 @@ createButton.addEventListener("click", (e) => {
   e.preventDefault();
   // createEventForm.submit();
 
-  
+
   createEvent();
 })
 
@@ -48,6 +48,25 @@ function grabEventFromForm(form) {
   }
   console.log(event);
   return event;
+}
+
+async function deleteEvent(event) {
+//get event title from form
+//get list of all events
+//compare name of title requested with those in the list
+//if found, remove it from the database
+//if not found, dismiss or tell user to reenter
+  var eventToBeDeleted = grabEventFromForm(form);
+  var eventList = getEvents();
+}
+
+async function editEvent(event) {
+//get name of event to be changed
+//get list of all events
+//compare name of title requested with those in the list
+//if found, remove it from the database and create a new event using the info from the form
+//if not found, dismiss or tell user to reenter
+var eventToBeEdited = grabEventFromForm(form);
 }
 
 // Get reference to modal form
@@ -107,9 +126,9 @@ fallSemesterButton.addEventListener("click", (e) => {
   fallSemester(e);
   populateCalendar(aug);
   getEvents();
-  
+
   })
-// when button is clicked, it adds one year to the month and makes month automatically January of upcoming year  
+// when button is clicked, it adds one year to the month and makes month automatically January of upcoming year
 function springSemester(e) {
   jan.add(1, 'year');
   navMonth.textContent = jan.format('MMMM YYYY');
@@ -122,10 +141,10 @@ springSemesterButton.addEventListener("click", (e) => {
   springSemester(e);
   populateCalendar(jan);
   getEvents();
-  
+
   })
-  
- // goes back to the current year and current month.  
+
+ // goes back to the current year and current month.
 function gotoCurrent(e) {
   navMonth.textContent = now.format('MMMM YYYY');
 }
@@ -135,9 +154,9 @@ currentButton.addEventListener("click", (e) => {
   gotoCurrent(e);
   populateCalendar(now);
   getEvents();
-  
-  }) 
-  
+
+  })
+
 function populateCalendar(date) {
 
   const days = Array.from(document.querySelectorAll('.day'));
@@ -216,7 +235,7 @@ async function getEvents() {
    })
    console.log(events);
    var days = document.querySelectorAll(".day");
-  
+
 
 
 
@@ -304,13 +323,13 @@ function addEventToCalendar(moment, event) {
 
 
 
-   
+
     // find the event that has the first date in your calendar month view
     // find the event that has the last date in your calendadr month view
     // grab all the events between those two dates
     // for each event object
       // place event info in correct calendar day box
-    
+
 
   // const eventsToShow = []
   // for (let event of events) {
@@ -346,9 +365,9 @@ function addEventToCalendar(moment, event) {
     {"title":"Last day to Drop a Course","date":"2019-09-23"}
   ]
   `;
-*/ 
-  
-  
+*/
+
+
   // console.log("hello");
   // console.log(events);
   //events = JSON.parse(events);
