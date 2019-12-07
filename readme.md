@@ -9,6 +9,9 @@ https://compsci.adelphi.edu:8842/~frankiecolasurdo/Calendar/
 
 Fetches existing events from the SQL database and allows inputting events via the "Create Event" button.
 
+## Documentation and Testing ##
+Please refer to our shared document for models, design choices, and testing documentation:
+https://docs.google.com/document/d/1Aa_sgzOTSetK7vyLdppI49dX7w49AhxkeIsDEcJuF0Q/edit?usp=sharing
 
 ## Changelog ##
 ** Version 2.00
