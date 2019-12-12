@@ -1,4 +1,6 @@
 <?php
+  	// removeEvents.php: preliminary API framework for deleting events via the web interface 
+  
     // Allow computers on other domains not from our adelphi server to make HTTP POST and GET requests.
     header("Access-Control-Allow-Origin: *");
 	
