@@ -1,4 +1,5 @@
 <?php
+// databaseConnection.php: Initial testing file for connecting to the database at all. 
   $databaseServerName = "localhost";//insert server port
   $databaseUsername = "root";
   $databasePassword = "";//used for manager and site admin
