@@ -1,5 +1,6 @@
 <?php
 
+// add_api.php: Legacy API for adding events, kept for documentation purposes.
 class Event {
 	// Properties
 	private $eventName;
@@ -34,12 +35,15 @@ class Event {
 	}
 }
 
+// Database connection
 $db = new mysqli("localhost", "cameronbosch", "alliance", "f19seaucalendar");
 if ($db->connect_errno) {
 	echo "Connect failed: ". $mysqli->connect_error;
 	exit();
 }
-var theEvent = new Event() // Fill in with values from form.
+
+// Fill in with values from form.
+var theEvent = new Event() 
 $sql = "INSERT INTO events (eventName, eventDescription, eventDate)
 VALUES ('$theEvent->getEventName()', '$theEvent->getEventDescription()', '$theEvent->getEventDate()')";
 
