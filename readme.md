@@ -4,8 +4,7 @@
 Access relevant files via the calendar folder.
 
 ## Website Access ## 
-Access our web interface through:
-https://compsci.adelphi.edu:8842/~frankiecolasurdo/Calendar/
+Access our web interface through:[Calendar](https://compsci.adelphi.edu:8842/~frankiecolasurdo/Calendar/)
 
 Fetches existing events from the SQL database and allows inputting events via the "Create Event" button.
 
